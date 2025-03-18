@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<!--   <meta name="description"
+        content="UniRestore bridges the gap between Perceptual Image Restoration (PIR) and Task-oriented Image Restoration (TIR) by leveraging a diffusion prior and adaptive feature fusion. While PIR enhances visual quality and TIR improves downstream task performance, UniRestore optimizes both aspects by integrating Complementary Feature Restoration Module (CFRM) and Task Feature Adapter (TFA), ensuring high-quality restorations that support downstream vision tasks effectively.">
+  <meta name="keywords" content="Point-based, Crowd Counting, Localization, Auxiliary Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="./static/images/thumbnail.png"/>
+  <link rel="image_src" href="./static/images/thumbnail.png">
+  <link rel="icon"
+        type="image/x-icon"
+        href="./static/images/favicon.ico"/> -->
+
+  <meta name="description"
+        content="UniRestore bridges the gap between Perceptual Image Restoration (PIR) and Task-oriented Image Restoration (TIR) by leveraging a diffusion prior and adaptive feature fusion. While PIR enhances visual quality and TIR improves downstream task performance, UniRestore optimizes both aspects by integrating Complementary Feature Restoration Module (CFRM) and Task Feature Adapter (TFA), ensuring high-quality restorations that support downstream vision tasks effectively.">
+  <meta name="keywords" content="Image Restoration, Image Enhancement, Multitask Learning, Diffusion Models, Image Generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:image" content="./unirestore_files/logo.png"/>
+  <link rel="image_src" href="./unirestore_files/logo.png">
+  <link rel="icon"
+        type="image/x-icon"
+        href="./unirestore_files/logo.png"/>
+
+  <title>UniRestore: Unified Perceptual and Task-Oriented Image Restoration Model Using Diffusion Prior.
+    </title>
+
+
+    <style>
+        .img-container {
+            text-align: center; /* Center the text and images */
+            margin-bottom: 20px; /* Adds some space between the image groups */
+        }
+
+        .image-with-caption {
+            display: inline-block; /* Allows multiple elements side by side */
+            margin: 10px; /* Adds some space around each image and caption */
+        }
+
+        .custom-gif {
+            width: 200px; /* Adjust based on your preference */
+            height: auto; /* Maintain aspect ratio */
+            margin-top: 10px; /* Space between caption and image */
+        }
+
+        .regular-gif{
+          width: 200px;
+          height: 120px;
+          margin-top: 10px
+        }
+
+        .caption {
+            font-weight: bold; /* Optional: makes the caption text bold */
+        }
+    </style>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EDF010G6PN"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-EDF010G6PN');
+
+  </script>
+
+  <script type="module"
+          src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="./static/slick/slick-theme.css"/>
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+<!--       <div class="columns is-centered">
+        <div class="column is-4 has-text-centered">
+          <img src="static/images/logo.svg" alt="HyperNeRF"/>
+        </div>
+      </div> -->
+      <div class="container has-text-centered">
+        <h1 class="title is-1 publication-title">
+			UniRestore: Unified Perceptual and Task-Oriented Image Restoration Model Using Diffusion Prior.
+        </h1>
+        <div class="is-size-5 publication-authors">
+          <div class="author-block"><a href="https://sites.google.com/view/cihsiang/home">I-Hsiang Chen</a> <sup> 1</sup></div>
+          <div class="author-block"><a href="https://sites.google.com/view/weitingchen/home"> Wei-Ting Chen</a> <sup> 2</sup></div>
+          <div class="author-block"><a href="https://scholar.google.com/citations?user=oZanP1AAAAAJ&hl=zh-TW"> Yu-Wei Liu</a> <sup> 1</sup></div>
+          <div class="author-block"><a href="https://scholar.google.com.tw/citations?user=xUtdoMcAAAAJ&hl=zh-TW"> Yuan-Chun Chiang</a> <sup> 1</sup></div>
+          <div class="author-block"><a href="https://homepage.ntu.edu.tw/~sykuo"> Sy-Yen Kuo</a> <sup> 1</sup></div>
+          <div class="author-block"><a href="https://faculty.ucmerced.edu/mhyang/"> Ming-Hsuan Yang</a> <sup> 3,4</sup></div>
+        <div class="is-size-5 publication-authors">
+          <span class="author-block"><sup>1</sup>National Taiwan University,</span>
+          <span class="author-block"><sup>2</sup>Microsoft</span>
+          <span class="author-block"><sup>2</sup>The University of California Merced</span>
+          <span class="author-block"><sup>3</sup>Google</spa>
+        </div>
+
+        <!-- <div class="is-size-5 publication-authors">
+          <span class="author-block"> </sup>* Co-corresponding authors</span>
+        </div> -->
+        <div class="is-size-5 publication-authors">
+          <span class="author-block"> </sup>(CVPR 2025)</span>
+        </div>
+          
+        <div class="column has-text-centered">
+          <div class="publication-links">
+            <!-- PDF Link. -->
+            <span class="link-block">
+                <a href="https://arxiv.org/abs/2501.13134" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+            <span class="link-block">
+                <a href="https://arxiv.org/abs/2501.13134" 
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+            </span>
+            <span class="link-block">
+              <a href="https://github.com/unirestore/UniRestore"  
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="fab fa-github"></i>
+                </span>
+                <span>Code</span>
+                </a>
+            </span>
+            <!-- Dataset Link. -->
+            <span class="link-block">
+              <a href="https://github.com/unirestore/UniRestore" 
+                 class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                    <i class="far fa-images"></i>
+                </span>
+                <span>Data</span>
+                </a>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr/>
+<section class="section" id="BibTeX">
+  <div class="container content is-max-desktop">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{chen2025unirestore,
+      title={UniRestore: Unified Perceptual and Task-Oriented Image Restoration Model Using Diffusion Prior},
+      author={Chen, I and Chen, Wei-Ting and Liu, Yu-Wei and Chiang, Yuan-Chun and Kuo, Sy-Yen and Yang, Ming-Hsuan and others},
+      journal={arXiv preprint arXiv:2501.13134},
+      year={2025}
+    }</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/unirestore/UniRestore">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/unirestore/UniRestore" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script type="text/javascript" src="./static/slick/slick.min.js"></script>
+</body>
+</html>
