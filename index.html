@@ -174,24 +174,7 @@
     </div>
   </div>
 </section>
-
-<section class="hero teaser">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-<!--       <video id="teaser" autoplay controls muted loop playsinline height="100%">
-        <source src="./static/images/teaser.mp4"
-                type="video/mp4">
-      </video> -->
-<!--       <h2 class="subtitle has-text-centered"> -->
-<!--              <i>RobustSAM</i> outperfroms SAM in various degradations. -->
-<!--         <i>RobustSAM</i> handles topological variations by modeling a
-        family of shapes in a higher-dimensional space, thereby producing more realistic renderings
-        and more accurate geometric reconstructions. -->
-<!--       </h2> -->
-    </div>
-  </div>
-</section>
-
+<!-- 
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
@@ -204,7 +187,35 @@
       </h2>
     </div>
   </div>
+</section> -->
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div style="display: flex; gap: 20px; align-items: center;">
+        
+        <!-- 左側影片 -->
+        <video autoplay muted loop playsinline style="width: 60%; border-radius: 8px;">
+        <source src="./unirestore_files/teaser/teaser.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        
+        <!-- 右側上下圖片 -->
+        <div style="display: flex; flex-direction: column; gap: 20px; width: 40%;">
+          <img src="./unirestore_files/teaser/pir.pdf" style="width: 100%; border-radius: 8px;" alt="Percpetual IR" />
+          <img src="./unirestore_files/teaser/tir.pdf" style="width: 100%; border-radius: 8px;" alt="Task-oriented IR" />
+        </div>
+
+      </div>
+
+      <!-- 說明文字 -->
+      <h2 class="subtitle has-text-centered" style="margin-top: 30px;">
+        <span class="methodname">UniRestore</span> is a unified image restoration framework for both perceptual and machine vision.
+      </h2>
+    </div>
+  </div>
 </section>
+
 
 <div class="columns is-centered has-text-centered">
   <div class="column is-three-quarters">
@@ -217,6 +228,7 @@
   </div>
 </div>
 
+<hr/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -278,7 +290,57 @@
     </div>
   </div>
 </section>    
- 
+
+<hr/>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+      <h2 class="title is-3">Architecture of APGCC</h2>
+      <p>
+		The main contributions of APGCC 
+		are the <b>Auxiliary Point Guidance (APG)</b> and </b>Implicit Feature Interpolation (IFI)</b> modules, 
+		which introduce precise auxiliary point proposal to enhance the optimization process's stability during 
+		the network's matching phase.
+      <div class="has-text-centered">
+<!--         <embed src="./apgcc_file/Arch.pdf" width="800px" height="2100px" /> -->
+        <img style="width: 100%;" src="./apgcc_file/model/Arch.jpg"
+             alt="Architecture of APGCC."/>
+
+
+        <div class="content has-text-justified">
+          <p>
+		        APGCC stabilize and enhance the point-based methods by incorporating two essential modules. During training, 
+            APG designed to instruct the network on the precise selection and optimization of point proposals for matching with target points, 
+            ensuring accurate and informed decisions in the proposal selection and optimization process. 
+            To facilitate the implementation of APG, which necessitates feature extraction at arbitrary positions, 
+            we introduce the IFI that can access features from diverse locations within the network. 
+            By enhancing the robustness of the matching process, our approach significantly improves the precision and reliability of crowd analysis models.
+        </div>
+
+        
+      </div>
+      <h3 class="title is-4">Overview of the proposed Auxiliary Point Guidance framework</h3>
+<!--       <embed src="./apgcc_file/APG.pdf" width="800px" height="2100px" /> -->
+        <img style="width: 100%;" src="./apgcc_file/model/APG.jpg"
+             alt="Overview of the proposed Auxiliary Point Guidance framework."/>
+        <div class="content has-text-justified">
+          <p>
+            The Auxiliary Point Guidance (APG) framework involves the strategic designation of auxiliary positive (Apos) and negative (Aneg) points within the optimization framework, based on ground truth coordinates (x, y). The objective is to ensure that the confidence of auxiliary positive points is as close to one as possible and that their predicted offsets closely match the corresponding ground truth points. Conversely, the expected confidence and offset of auxiliary negative points should be as close to zero as possible, preventing negative points from using offsets to bring their proposal coordinates close to the ground truth. This approach effectively directs the optimization process by clearly distinguishing between potential positive and negative matches.
+        </div>
+      
+      </div>
+      <h3 class="title is-4">Overview of Implicit Feature Interpolation</h3>
+        <img style="width: 100%;" src="./apgcc_file/model/IFI.jpg"
+             alt="Overview of Implicit Feature Interpolation."/>
+        <div class="content has-text-justified">
+          <p>
+            Implicit Feature Interpolation is a technique that enhances the precision of point-based crowd counting and localization. This method leverages the underlying structure of the feature space to interpolate features smoothly and continuously, without explicitly defining interpolation points. By doing this, it allows for more accurate alignment of predicted points with ground truth coordinates, improving the model's ability to handle varying crowd densities and complex spatial relationships. This approach results in finer granularity and better spatial dependencies in feature representations, leading to improved accuracy and robustness in crowd counting and localization tasks.
+          </div>
+
+    </div>
+  </div>
+</section>
 
 <hr/>
 <section class="section" id="BibTeX">
