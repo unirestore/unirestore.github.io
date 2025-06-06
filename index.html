@@ -207,14 +207,13 @@
   </div>
 </div> -->
 
-<!-- HTML 結構 -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <div class="image-viewport" style="position: relative; overflow: hidden; width: 100%; height: 400px;">
-        <img class="slide-image" src="./unirestore_files/teaser/uir.pdf" style="position:absolute; width:100%; height:auto;" />
-        <img class="slide-image" src="./unirestore_files/teaser/pir.pdf" style="position:absolute; width:100%; height:auto;" />
-        <img class="slide-image" src="./unirestore_files/teaser/tir.pdf" style="position:absolute; width:100%; height:auto;" />
+        <img class="fade-image" src="./unirestore_files/teaser/uir.pdf" style="position:absolute; width:100%; height:100%; object-fit:cover;" />
+        <img class="fade-image" src="./unirestore_files/teaser/pir.pdf" style="position:absolute; width:100%; height:100%; object-fit:cover;" />
+        <img class="fade-image" src="./unirestore_files/teaser/tir.pdf" style="position:absolute; width:100%; height:100%; object-fit:cover;" />
       </div>
       <h2 class="subtitle has-text-centered">
         <span class="methodname">UniRestore</span> utilizes diffusion prior to bridge the gap between PIR and TIR.
@@ -223,46 +222,39 @@
   </div>
 </section>
 
-<!-- CSS 動畫樣式 -->
+<!-- CSS 樣式 -->
 <style>
-  .slide-image {
+  .fade-image {
     opacity: 0;
-    transform: translateX(100%);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 1s ease-in-out;
     z-index: 0;
   }
 
-  .slide-image.active {
+  .fade-image.active {
     opacity: 1;
-    transform: translateX(0);
     z-index: 1;
-  }
-
-  .slide-image.prev {
-    transform: translateX(-100%);
   }
 </style>
 
-<!-- JavaScript 動畫邏輯 -->
+<!-- JavaScript 控制 -->
 <script>
-  $(document).ready(function() {
-    const images = $('.slide-image');
+  $(document).ready(function () {
+    const images = $('.fade-image');
     let current = 0;
 
-    // 初始化第一張圖片
+    // 初始顯示第一張
     images.eq(current).addClass('active');
 
     setInterval(() => {
-      // 移除目前的 active 樣式
-      images.eq(current).removeClass('active').addClass('prev');
+      // 將目前圖片移除 active
+      images.eq(current).removeClass('active');
 
-      // 更新下一張 index
+      // 更新 index
       current = (current + 1) % images.length;
 
-      // 加上下一張的 active 樣式，前一張自動滑出
-      images.removeClass('prev');
+      // 顯示下一張
       images.eq(current).addClass('active');
-    }, 3000);
+    }, 3000); // 每 3 秒切換
   });
 </script>
 
@@ -271,8 +263,8 @@
     <p>
       <b>UniRestore</b> </i> utilizes diffusion prior to bridge the gap between Perceptual Image Restoration (PIR) and Task-oriented Image Restoration (TIR),
       achieving both high visual quality and strong downstream performance. 
-      PIR aims to enhance image clarity and visual quality, but often fails to benefit recognition tasks.
-      In contrast, TIR focuses on optimizing images for machine perception, such as classification or segmentation, but tends to compromise visual quality.
+      <b>PIR</b> aims to enhance image clarity and visual quality, but often fails to benefit recognition tasks.
+      In contrast, <b>TIR</b> focuses on optimizing images for machine perception, such as classification or segmentation, but tends to compromise visual quality.
     </p>
   </div>
 </div>
