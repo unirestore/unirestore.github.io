@@ -190,6 +190,8 @@
   </div>
 </section> 
 
+
+
 <div class="columns is-centered has-text-centered">
   <div class="column is-three-quarters">
     <p>
@@ -200,6 +202,8 @@
     </p>
   </div>
 </div>
+
+
 
 <hr/>
 <!DOCTYPE html>
@@ -236,6 +240,9 @@
 </body>
 </html>
 
+
+
+
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
@@ -263,8 +270,9 @@
     </div>
   </div>
 </section>    
-
 <hr/>
+
+
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -286,20 +294,20 @@
             The Complementary Feature Restoration Module (CFRM) is designed to restore clean features from degraded inputs, guiding the denoising process with enhanced representations. 
             To adapt the diffusion prior for diverse downstream tasks, we introduce the Task Feature Adapter (TFA), which dynamically fuses restored and generated features through lightweight task-specific prompts. 
             By enabling unified modeling and efficient task extensibility, UniRestore achieves high visual fidelity while preserving strong task performance across various real-world scenarios.
-        </div>
-
-        
+        </div> 
       </div>
+
+      <!--
       <h3 class="title is-4">Overview of Complementary Feature Restoration Module</h3>
-<!--       <embed src="./apgcc_file/APG.pdf" width="800px" height="2100px" /> -->
         <img style="width: 100%;" src="./unirestore_files/model/CFRM.pdf"
              alt="Overview of the proposed Complementary Feature Restoration Module."/>
         <div class="content has-text-justified">
           <p>
             The Complementary Feature Restoration Module (CFRM) is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.        
           </div>
-      
-      </div>
+        </div> -->
+
+      <!--
       <h3 class="title is-4">Overview of Task Feature Adapter</h3>
         <img style="width: 100%;" src="./unirestore_files/model/TFA.pdf"
              alt="Overview of Task Feature Adapter."/>
@@ -308,12 +316,39 @@
             The Task Feature Adapter (TFA) adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
             Moreover, introducing additional tasks is simple and efficient—only a new task-specific prompt needs to be added and trained, without modifying the main model or accessing previous data, enabling scalable multi-task extension.
           </div>
+        </div> -->
 
-    </div>
+      <h3 class="title is-4 has-text-centered">Module Overview</h3>
+      <div class="columns is-variable is-6">
+        <!-- CFRM Column -->
+        <div class="column">
+          <figure class="image">
+            <img src="./unirestore_files/model/CFRM.pdf" alt="Overview of the proposed Complementary Feature Restoration Module." />
+          </figure>
+          <h4 class="title is-5 has-text-centered">Complementary Feature Restoration Module</h4>
+          <div class="content has-text-justified">
+            <p>
+              The Complementary Feature Restoration Module (CFRM) is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.
+            </p>
+          </div>
+        </div>
+
+        <!-- TFA Column -->
+        <div class="column">
+          <figure class="image">
+            <img src="./unirestore_files/model/TFA.pdf" alt="Overview of Task Feature Adapter." />
+          </figure>
+          <h4 class="title is-5 has-text-centered">Task Feature Adapter</h4>
+          <div class="content has-text-justified">
+            <p>
+              The Task Feature Adapter (TFA) adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead. Moreover, introducing additional tasks is simple and efficient—only a new task-specific prompt needs to be added and trained, without modifying the main model or accessing previous data, enabling scalable multi-task extension.
+            </p>
+          </div>
+        </div>
+      </div>
   </div>
 </section>
 
-<!--
 <hr/>
 <section class="section">
   <div class="container is-max-desktop">
@@ -346,6 +381,7 @@
   </div>
 </section>
 
+<!--
 <hr/>
 <section class="section">
   <div class="container is-max-desktop">
@@ -422,7 +458,6 @@
 </section>
 -->
 
-
 <hr/>
 <section class="section" id="BibTeX">
   <div class="container content is-max-desktop">
@@ -436,6 +471,7 @@
 	}</code></pre>
   </div>
 </section>
+
 
 <footer class="footer">
   <div class="container">
