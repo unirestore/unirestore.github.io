@@ -249,9 +249,9 @@
       On the other hand, Task-oriented Image Restoration (TIR) methods focus on enhancing image utility for high-level vision tasks, sometimes compromising visual quality.
 			This paper introduces UniRestore, a unified image restoration model that bridges the gap between PIR and TIR by using a diffusion prior.
 			The diffusion prior is designed to generate images that align with human visual quality preferences, but these images are often unsuitable for TIR scenarios.
-      To solve this limitation, UniRestore utilizes encoder features from an autoencoder to adapt the diffusion prior to specific tasks.
           </p>
           <p>
+            To solve this limitation, UniRestore utilizes encoder features from an autoencoder to adapt the diffusion prior to specific tasks.
             We propose a Complementary Feature Restoration Module (CFRM) to reconstruct degraded encoder features 
             and a Task Feature Adapter (TFA) module to facilitate adaptive feature fusion in the decoder.
             This design allows UniRestore to optimize images for both human perception and downstream task requirements, addressing discrepancies between visual quality and functional needs. 
@@ -269,51 +269,159 @@
 <section class="section">
   <div class="container is-max-desktop">
     <div class="content has-text-justified">
-      <h2 class="title is-3">Architecture of APGCC</h2>
+      <h2 class="title is-3">Architecture of UniRestore</h2>
       <p>
-		The main contributions of APGCC 
-		are the <b>Auxiliary Point Guidance (APG)</b> and </b>Implicit Feature Interpolation (IFI)</b> modules, 
-		which introduce precise auxiliary point proposal to enhance the optimization process's stability during 
-		the network's matching phase.
+		The main contributions of UniRestore are the <b>Complementary Feature Restoration Module (CFRM)</b> and the </b>Task Feature Adapter (TFA)</b> modules, 
+    which utilize task-specific prompts to effectively adapt diffusion priors for both perceptual and task-oriented image restoration, 
+    enabling unified and extensible performance across diverse downstream tasks.
+
       <div class="has-text-centered">
 <!--         <embed src="./apgcc_file/Arch.pdf" width="800px" height="2100px" /> -->
-        <img style="width: 100%;" src="./apgcc_file/model/Arch.jpg"
+        <img style="width: 100%;" src="./unirestore_files/model/Overview.pdf"
              alt="Architecture of APGCC."/>
-
 
         <div class="content has-text-justified">
           <p>
-		        APGCC stabilize and enhance the point-based methods by incorporating two essential modules. During training, 
-            APG designed to instruct the network on the precise selection and optimization of point proposals for matching with target points, 
-            ensuring accurate and informed decisions in the proposal selection and optimization process. 
-            To facilitate the implementation of APG, which necessitates feature extraction at arbitrary positions, 
-            we introduce the IFI that can access features from diverse locations within the network. 
-            By enhancing the robustness of the matching process, our approach significantly improves the precision and reliability of crowd analysis models.
+		        UniRestore bridges perceptual and task-oriented image restoration by incorporating two essential modules. 
+            The Complementary Feature Restoration Module (CFRM) is designed to restore clean features from degraded inputs, guiding the denoising process with enhanced representations. 
+            To adapt the diffusion prior for diverse downstream tasks, we introduce the Task Feature Adapter (TFA), which dynamically fuses restored and generated features through lightweight task-specific prompts. 
+            By enabling unified modeling and efficient task extensibility, UniRestore achieves high visual fidelity while preserving strong task performance across various real-world scenarios.
         </div>
 
         
       </div>
-      <h3 class="title is-4">Overview of the proposed Auxiliary Point Guidance framework</h3>
+      <h3 class="title is-4">Overview of Complementary Feature Restoration Module</h3>
 <!--       <embed src="./apgcc_file/APG.pdf" width="800px" height="2100px" /> -->
-        <img style="width: 100%;" src="./apgcc_file/model/APG.jpg"
-             alt="Overview of the proposed Auxiliary Point Guidance framework."/>
+        <img style="width: 100%;" src="./unirestore_files/model/CFRM.pdf"
+             alt="Overview of the proposed Complementary Feature Restoration Module."/>
         <div class="content has-text-justified">
           <p>
-            The Auxiliary Point Guidance (APG) framework involves the strategic designation of auxiliary positive (Apos) and negative (Aneg) points within the optimization framework, based on ground truth coordinates (x, y). The objective is to ensure that the confidence of auxiliary positive points is as close to one as possible and that their predicted offsets closely match the corresponding ground truth points. Conversely, the expected confidence and offset of auxiliary negative points should be as close to zero as possible, preventing negative points from using offsets to bring their proposal coordinates close to the ground truth. This approach effectively directs the optimization process by clearly distinguishing between potential positive and negative matches.
-        </div>
+            The Complementary Feature Restoration Module (CFRM) is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.        
+          </div>
       
       </div>
-      <h3 class="title is-4">Overview of Implicit Feature Interpolation</h3>
-        <img style="width: 100%;" src="./apgcc_file/model/IFI.jpg"
-             alt="Overview of Implicit Feature Interpolation."/>
+      <h3 class="title is-4">Overview of Task Feature Adapter</h3>
+        <img style="width: 100%;" src="./unirestore_files/model/TFA.pdf"
+             alt="Overview of Task Feature Adapter."/>
         <div class="content has-text-justified">
           <p>
-            Implicit Feature Interpolation is a technique that enhances the precision of point-based crowd counting and localization. This method leverages the underlying structure of the feature space to interpolate features smoothly and continuously, without explicitly defining interpolation points. By doing this, it allows for more accurate alignment of predicted points with ground truth coordinates, improving the model's ability to handle varying crowd densities and complex spatial relationships. This approach results in finer granularity and better spatial dependencies in feature representations, leading to improved accuracy and robustness in crowd counting and localization tasks.
+            The Task Feature Adapter (TFA) adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
+            Moreover, introducing additional tasks is simple and efficient—only a new task-specific prompt needs to be added and trained, without modifying the main model or accessing previous data, enabling scalable multi-task extension.
           </div>
 
     </div>
   </div>
 </section>
+
+<!--
+<hr/>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+      <h2 class="title is-3">Quantitative Results</h2>
+      <p> 
+        Quantitative results demonstrate that while PIR- and TIR-based methods excel in their respective tasks, they struggle to generalize beyond their original objectives. In contrast, UniRestore consistently achieves strong performance across perceptual restoration, classification, and segmentation using a single unified model. It not only outperforms existing baselines in multi-task settings but also generalizes effectively to unseen datasets and unknown downstream models, highlighting its robustness and scalability.      </p>
+      <div class="img-container">
+        <div class="image-with-caption">
+            <div class="caption"></b>Performance comparison of existing methods on one seen and five unseen PIR datasets.</b></div>
+            <img style="width: 100%;" src="./unirestore_files/Quantitative/quantitative_ir.png"
+                  alt="quantitative_ir."/>
+        </div>
+      </div>
+
+      <div class="img-container">
+        <div class="image-with-caption">
+            <div class="caption"></b>Performance comparison of existing methods on seen and unseen datasets for image classification.</b></div>
+            <img style="width: 100%;" src="./unirestore_files/Quantitative/quantitative_cls.png"
+                  alt="quantitative_cls."/>
+        </div>
+        <div class="image-with-caption">
+          <div class="caption"></b>Performance comparison of existing methods on seen and unseen datasets for semantic segmentation.</b></div>
+          <img style="width: 100%;" src="./unirestore_files/Quantitative/quantitative_seg.png"
+                  alt="quantitative_seg."/>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr/>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified">
+      <h2 class="title is-3">Qualitative Results</h2>
+      <p>
+        In the PIR task, traditional methods effectively remove degradation patterns, but UniRestore goes further by reconstructing finer details for improved visual quality. 
+        For classification, UniRestore emphasizes high-frequency information, producing activation maps that closely align with those from high-quality ground-truth images. 
+        In the segmentation task, UniRestore enables models to generate more accurate object boundaries, demonstrating enhanced spatial consistency and overall task performance.      
+      </p>
+
+      <div class="img-container">
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_1.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_2.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_4.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_5.gif">
+        </div>
+      </div>
+      
+      <div class="img-container">
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_6.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_7.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_9.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_10.gif">
+        </div>
+      </div>
+      
+      <div class="img-container">
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_11.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_12.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_13.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_14.gif">
+        </div>
+      </div>
+      
+      <div class="img-container">
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_15.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_16.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_17.gif">
+        </div>
+        <div class="image-with-caption">
+          <img class="regular-gif" src="./apgcc_file/vis/output_gt_18.gif">
+        </div>
+      </div> 
+
+    </div>
+  </div>
+</section>
+-->
+
 
 <hr/>
 <section class="section" id="BibTeX">
