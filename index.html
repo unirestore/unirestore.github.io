@@ -322,10 +322,10 @@
       <div class="columns is-variable is-6">
         <!-- CFRM Column -->
         <div class="column">
+          <h5 class="title is-5 has-text-centered">Complementary Feature Restoration Module</h5>
           <figure class="image">
             <img src="./unirestore_files/model/CFRM.pdf" alt="Overview of the proposed Complementary Feature Restoration Module." />
           </figure>
-          <h4 class="title is-5 has-text-centered">Complementary Feature Restoration Module</h4>
           <div class="content has-text-justified">
             <p>
               The Complementary Feature Restoration Module (CFRM) is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.
@@ -335,10 +335,10 @@
 
         <!-- TFA Column -->
         <div class="column">
+          <h5 class="title is-5 has-text-centered">Task Feature Adapter</h5>
           <figure class="image">
             <img src="./unirestore_files/model/TFA.pdf" alt="Overview of Task Feature Adapter." />
           </figure>
-          <h4 class="title is-5 has-text-centered">Task Feature Adapter</h4>
           <div class="content has-text-justified">
             <p>
               The Task Feature Adapter (TFA) adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead. Moreover, introducing additional tasks is simple and efficient—only a new task-specific prompt needs to be added and trained, without modifying the main model or accessing previous data, enabling scalable multi-task extension.
