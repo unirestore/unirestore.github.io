@@ -206,72 +206,6 @@
   </div>
 </section>
 
-<!-- <div class="img-container">
-  <div class="image-with-caption">
-      <div class="caption">UniRestore</div>
-      <img class="custom-gif" src="./unirestore_files/teaser/uir.pdf">
-  </div>
-  <div class="image-with-caption">
-      <div class="caption">Perceptual IR (PIR)</div>
-      <img class="custom-gif" src="./unirestore_files/teaser/pir.pdf">
-  </div>
-  <div class="image-with-caption">
-      <div class="caption">Task-oriented IR (TIR)</div>
-      <img class="custom-gif" src="./unirestore_files/teaser/tir.pdf">
-  </div>
-</div> -->
-
-<!--
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <div class="image-viewport" style="position: relative; overflow: hidden; width: 100%; height: 400px;">
-        <img class="fade-image" src="./unirestore_files/teaser/lq.png" style="position:absolute; width:100%; height:100%; object-fit:cover;" />
-        <img class="fade-image" src="./unirestore_files/teaser/ir.png" style="position:absolute; width:100%; height:100%; object-fit:cover;" />
-        <img class="fade-image" src="./unirestore_files/teaser/lq.png" style="position:absolute; width:100%; height:100%; object-fit:cover;" />
-        <img class="fade-image" src="./unirestore_files/teaser/seg.png" style="position:absolute; width:100%; height:100%; object-fit:cover;" />
-      </div>
-      <h2 class="subtitle has-text-centered">
-        <span class="methodname">UniRestore</span> is a unified image restoration framework for both perceptual and machine vision.
-      </h2>
-    </div>
-  </div>
-</section>
-
-<style>
-  .fade-image {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: 0;
-  }
-
-  .fade-image.active {
-    opacity: 1;
-    z-index: 1;
-  }
-</style>
-
-<script>
-  $(document).ready(function () {
-    const images = $('.fade-image');
-    let current = 0;
-
-    // 初始顯示第一張
-    images.eq(current).addClass('active');
-
-    setInterval(() => {
-      // 將目前圖片移除 active
-      images.eq(current).removeClass('active');
-
-      // 更新 index
-      current = (current + 1) % images.length;
-
-      // 顯示下一張
-      images.eq(current).addClass('active');
-    }, 3000); // 每 3 秒切換
-  });
-</script> -->
-
 <div class="columns is-centered has-text-centered">
   <div class="column is-three-quarters">
     <p>
@@ -325,26 +259,26 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Crowd counting and localization have become increasingly important in computer vision due to their wide-ranging applications. 
-			While point-based strategies have been widely used in crowd counting methods, they face a significant challenge, i.e., 
-			the lack of an effective learning strategy to guide the matching process. 
-			This deficiency leads to instability in matching point proposals to target points, adversely affecting overall performance. 
-			To address this issue, we introduce an effective approach to stabilize the proposal-target matching in point-based methods.
+            Image restoration aims to recover content from inputs degraded by various factors, such as adverse weather, blur, and noise. 
+			Perceptual Image Restoration (PIR) methods improve visual quality but often do not support downstream tasks effectively. 
+      On the other hand, Task-oriented Image Restoration (TIR) methods focus on enhancing image utility for high-level vision tasks, sometimes compromising visual quality.
+			This paper introduces UniRestore, a unified image restoration model that bridges the gap between PIR and TIR by using a diffusion prior.
+			The diffusion prior is designed to generate images that align with human visual quality preferences, but these images are often unsuitable for TIR scenarios.
+      To solve this limitation, UniRestore utilizes encoder features from an autoencoder to adapt the diffusion prior to specific tasks.
           </p>
           <p>
-            We propose Auxiliary Point Guidance (APG) to provide clear and effective guidance for proposal selection and optimization, 
-			addressing the core issue of matching uncertainty. 
-			Additionally, we develop Implicit Feature Interpolation (IFI) to enable adaptive feature extraction in diverse crowd scenarios, 
-			further enhancing the model's robustness and accuracy. Extensive experiments demonstrate the effectiveness of our approach, 
-			showing significant improvements in crowd counting and localization performance, particularly under challenging conditions.
+            We propose a Complementary Feature Restoration Module (CFRM) to reconstruct degraded encoder features 
+            and a Task Feature Adapter (TFA) module to facilitate adaptive feature fusion in the decoder.
+            This design allows UniRestore to optimize images for both human perception and downstream task requirements, addressing discrepancies between visual quality and functional needs. 
+            Integrating these modules also enhances UniRestore’s adaptability and efficiency across diverse tasks. 
+            Extensive experiments demonstrate the superior performance of UniRestore in both PIR and TIR scenarios.
           </p> 
         </div>
       </div>
     </div>
   </div>
-</section>
-
-
+</section>    
+ 
 
 <hr/>
 <section class="section" id="BibTeX">
