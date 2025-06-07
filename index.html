@@ -308,8 +308,8 @@
         <div class="content has-text-justified">
           <p>
 		        UniRestore bridges perceptual and task-oriented image restoration by incorporating two essential modules. 
-            The <span class="tag is-rounded has-text-weight-semibold" style="background-color: #ffdce0; color: #b30033;">Complementary Feature Restoration Module (CFRM)</span> is designed to restore clean features from degraded inputs, guiding the denoising process with enhanced representations. 
-            To adapt the diffusion prior for diverse downstream tasks, we introduce the <span class="tag is-rounded has-text-weight-semibold" style="background-color: #def5de; color: #1e5e1e;">Task Feature Adapter (TFA)</span>, which dynamically fuses restored and generated features through lightweight task-specific prompts. 
+            The <b>Complementary Feature Restoration Module (CFRM)</b> is designed to restore clean features from degraded inputs, guiding the denoising process with enhanced representations. 
+            To adapt the diffusion prior for diverse downstream tasks, we introduce the <b>Task Feature Adapter (TFA)</b>, which dynamically fuses restored and generated features through lightweight task-specific prompts. 
             By enabling unified modeling and efficient task extensibility, UniRestore achieves high visual fidelity while preserving strong task performance across various real-world scenarios.
         </div> 
       </div>
@@ -334,14 +334,14 @@
         <!-- CFRM Text -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <span class="tag is-rounded has-text-weight-semibold" style="background-color: #ffdce0; color: #b30033;">Complementary Feature Restoration Module (CFRM)</span> is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.
+            <span class="tag is-light" style="background-color: #ffeef0; color: #b30033;">Complementary Feature Restoration Module (CFRM)</span> is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.
           </p>
         </div>
 
         <!-- TFA Text -->
         <div class="column is-half">
           <p class="content has-text-justified">
-            <span class="tag is-rounded has-text-weight-semibold" style="background-color: #def5de; color: #1e5e1e;">Task Feature Adapter (TFA)</span> adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
+            <span class="tag is-light" style="background-color: #e7f6e7; color: #1e5e1e;">Task Feature Adapter (TFA)</span> adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
           </p>
         </div>
 
