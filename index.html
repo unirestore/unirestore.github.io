@@ -361,7 +361,8 @@
     <div class="content has-text-justified">
       <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
       <p> 
-        Quantitative results demonstrate that while PIR- and TIR-based methods excel in their respective tasks, they struggle to generalize beyond their original objectives. In contrast, UniRestore consistently achieves strong performance across perceptual restoration, classification, and segmentation using a single unified model. It not only outperforms existing baselines in multi-task settings but also generalizes effectively to unseen datasets and unknown downstream models, highlighting its robustness and scalability.      </p>
+        Quantitative results demonstrate that while PIR- and TIR-based methods excel in their respective tasks, they struggle to generalize beyond their original objectives. In contrast, UniRestore consistently achieves strong performance across perceptual restoration, classification, and segmentation using a single unified model. It not only outperforms existing baselines in multi-task settings but also generalizes effectively to unseen datasets and unknown downstream models, highlighting its robustness and scalability.     
+      </p>
       <div class="img-container">
         <div class="image-with-caption">
             <div class="caption"></b>Performance comparison of existing methods on one seen and five unseen PIR datasets.</b></div>
@@ -383,6 +384,11 @@
         </div>
       </div>
 
+      <p>
+          <em>
+            Methods marked with "*" indicate models trained under the UniRestore multi-task setting; others are trained using their original objective.
+          </em>
+        </p>
     </div>
   </div>
 </section>
@@ -394,9 +400,8 @@
     <div class="content has-text-justified">
       <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
       <p>
-        In the PIR task, traditional methods effectively remove degradation patterns, but UniRestore goes further by reconstructing finer details for improved visual quality. 
-        For classification, UniRestore emphasizes high-frequency information, producing activation maps that closely align with those from high-quality ground-truth images. 
-        In the segmentation task, UniRestore enables models to generate more accurate object boundaries, demonstrating enhanced spatial consistency and overall task performance.      
+        UniRestore effectively removes degradation patterns and reconstructs finer details, leading to improved visual quality in PIR task.
+        Moreover, for TIR task, UniRestore emphasizes high-frequency information, which improves activation map alignment and enables more accurate object boundaries, demonstrating enhanced spatial consistency and stronger overall task performance.     
       </p>
 
       <div class="img-container">
