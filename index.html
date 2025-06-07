@@ -272,7 +272,22 @@
 </section>    
 <hr/>
 
-
+<style>
+  .module-block {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .module-block .image {
+    flex-shrink: 0;
+  }
+  .module-block .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+</style>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -297,55 +312,37 @@
         </div> 
       </div>
 
-      <!--
-      <h3 class="title is-4">Overview of Complementary Feature Restoration Module</h3>
-        <img style="width: 100%;" src="./unirestore_files/model/CFRM.pdf"
-             alt="Overview of the proposed Complementary Feature Restoration Module."/>
-        <div class="content has-text-justified">
-          <p>
-            The Complementary Feature Restoration Module (CFRM) is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.        
-          </div>
-        </div> -->
-
-      <!--
-      <h3 class="title is-4">Overview of Task Feature Adapter</h3>
-        <img style="width: 100%;" src="./unirestore_files/model/TFA.pdf"
-             alt="Overview of Task Feature Adapter."/>
-        <div class="content has-text-justified">
-          <p>
-            The Task Feature Adapter (TFA) adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
-            Moreover, introducing additional tasks is simple and efficient—only a new task-specific prompt needs to be added and trained, without modifying the main model or accessing previous data, enabling scalable multi-task extension.
-          </div>
-        </div> -->
-
       <h3 class="title is-4 has-text-centered">Proposed Modules</h3>
       <div class="columns is-variable is-6">
         <!-- CFRM Column -->
         <div class="column">
-          <!-- <h5 class="title is-5 has-text-centered">Complementary Feature Restoration Module</h5> -->
-          <figure class="image">
-            <img src="./unirestore_files/model/CFRM.pdf" alt="Overview of the proposed Complementary Feature Restoration Module." />
-          </figure>
-          <div class="content has-text-justified">
-            <p>
-              The <b>Complementary Feature Restoration Module (CFRM)</b> is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.
-            </p>
+          <div class="module-block">
+            <figure class="image">
+              <img src="./unirestore_files/model/CFRM.pdf" alt="Overview of the proposed Complementary Feature Restoration Module." />
+            </figure>
+            <div class="content has-text-justified">
+              <p>
+                The <b>Complementary Feature Restoration Module (CFRM)</b> is designed to restore clean and informative features from degraded inputs within the encoder. It enhances feature quality through a four-step process: feature enhancement, intra-group channel attention, inter-group channel integration, and feature recovery. By modeling diverse degradation patterns and emphasizing task-relevant information, CFRM provides complementary representations that guide the decoder for high-quality image restoration and improved downstream performance.
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- TFA Column -->
         <div class="column">
-          <!-- <h5 class="title is-5 has-text-centered">Task Feature Adapter</h5> -->
-          <figure class="image">
-            <img src="./unirestore_files/model/TFA.pdf" alt="Overview of Task Feature Adapter." />
-          </figure>
-          <div class="content has-text-justified">
-            <p>
-              The <b>Task Feature Adapter (TFA)</b> adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead. 
-            </p>
+          <div class="module-block">
+            <figure class="image">
+              <img src="./unirestore_files/model/TFA.pdf" alt="Overview of Task Feature Adapter." />
+            </figure>
+            <div class="content has-text-justified">
+              <p>
+                The <b>Task Feature Adapter (TFA)</b> adapts restored encoder features for diverse recognition tasks by integrating them with diffusion features in the decoder. Instead of using separate adapters per task, TFA employs lightweight, learnable prompts that guide feature fusion at each layer. These prompts are dynamically updated, allowing efficient task adaptation without retraining the entire model. This design ensures scalability and enables seamless extension to new tasks with minimal overhead.
+              </p>
+            </div>
           </div>
         </div>
       </div>
+
      <p> Moreover, introducing additional tasks is simple and efficient—only a new task-specific prompt needs to be added and trained, without modifying the main model or accessing previous data, enabling scalable multi-task extension.
      </p>
   </div>
